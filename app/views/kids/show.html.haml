@@ -12,6 +12,6 @@
 		- @tasks.each do |task|
 			%br
 			= check_box_tag "kid[task_ids][]",task.id,@kid.tasks.include?(task)
-			= task.name
+			%span{:class => ("bold" if task.required)}= task.name
 	%div.form-actions
 		= f.submit "Save"

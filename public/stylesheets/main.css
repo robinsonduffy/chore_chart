@@ -1,4 +1,5 @@
 body {width:1024px;}
+.bold {font-weight:bold;}
 #points {position:absolute; right:0; top:0;}
 #points #star {margin: 10px; text-align: center; background-image: url('/images/one_star.png'); width: 100px; height: 100px; line-height: 118px; font-size: 40px;}
 #points #star a {text-decoration:none; color:black;}
