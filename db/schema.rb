@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170502003048) do
+ActiveRecord::Schema.define(:version => 20170529220445) do
 
   create_table "completed_tasks", :force => true do |t|
     t.integer  "kid_id"
@@ -22,10 +22,11 @@ ActiveRecord::Schema.define(:version => 20170502003048) do
   end
 
   create_table "kids", :force => true do |t|
-    t.string   "name",                      :null => false
-    t.integer  "points",     :default => 0
+    t.string   "name",                         :null => false
+    t.integer  "points",        :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "minimum_tasks", :default => 0, :null => false
   end
 
   create_table "kids_tasks", :id => false, :force => true do |t|
