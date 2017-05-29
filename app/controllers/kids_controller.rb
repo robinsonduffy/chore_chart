@@ -22,6 +22,7 @@ class KidsController < ApplicationController
       redirect_to kids_path
     else
       @title = @kid.name
+      @tasks = Task.all
       render :show
     end
   end

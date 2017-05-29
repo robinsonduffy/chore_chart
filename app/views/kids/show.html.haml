@@ -5,6 +5,9 @@
 		= f.label :points
 		= f.text_field :points
 	%div.form-field
+		= f.label :minimum_tasks
+		= f.text_field :minimum_tasks
+	%div.form-field
 		= f.label :tasks
 		- @tasks.each do |task|
 			%br
