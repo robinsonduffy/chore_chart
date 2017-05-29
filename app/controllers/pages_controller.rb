@@ -37,8 +37,8 @@ class PagesController < ApplicationController
   
   def chore_chart_reward_select
     @kid = Kid.find(params[:kid_id])
-    deny_access_to_rewards(@kid.id, "required") and return unless @kid.all_required_tasks_completed_today
     deny_access_to_rewards(@kid.id, "minimum") and return unless @kid.enough_tasks_completed_today
+    deny_access_to_rewards(@kid.id, "required") and return unless @kid.all_required_tasks_completed_today
     
     @title = "#{@kid.name} - Select Reward"
     @rewards = Reward.all
@@ -46,9 +46,9 @@ class PagesController < ApplicationController
   
   def chore_chart_reward_purchase
     kid = Kid.find(params[:kid_id])
-    deny_access_to_rewards(kid.id, "required") and return unless kid.all_required_tasks_completed_today
     deny_access_to_rewards(kid.id, "minimum") and return unless kid.enough_tasks_completed_today
-     
+    deny_access_to_rewards(kid.id, "required") and return unless kid.all_required_tasks_completed_today
+    
     reward = Reward.find(params[:reward_id])
     kid.points = kid.points - reward.points
     kid.save if kid.points >= 0
