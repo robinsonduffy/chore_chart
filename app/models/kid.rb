@@ -9,7 +9,8 @@ class Kid < ActiveRecord::Base
                     
   validates :points, :numericality => true
   
-  validates :minimum_tasks, :numericality => {:greater_than_or_equal_to => 0, :only_integer => true} 
+  validates :minimum_tasks, :numericality => {:greater_than_or_equal_to => 0, :only_integer => true}
+  validate :minimum_tasks_is_doable 
   
   def all_required_tasks_completed_today
     completed_tasks = []
@@ -28,6 +29,10 @@ class Kid < ActiveRecord::Base
       required_tasks << task if task.required
     end
     return required_tasks
+  end
+  
+  def minimum_tasks_is_doable
+    errors.add_to_base("The Minimum Tasks is not doable. There are not enough tasks assigned to this kid.") unless minimum_tasks <= tasks.count
   end
   
 end
