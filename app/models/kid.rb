@@ -13,14 +13,24 @@ class Kid < ActiveRecord::Base
   validate :minimum_tasks_is_doable 
   
   def all_required_tasks_completed_today
-    completed_tasks = []
-    self.completed_tasks.where(:date => Time.current.to_date).each do |completed_task|
-      completed_tasks << Task.find(completed_task.task_id)
-    end
+    completed_tasks = completed_tasks_today
     self.required_tasks.each do |required_task|
       return false unless completed_tasks.include? required_task
     end
     return true
+  end
+  
+  def enough_tasks_completed_today
+    return true if self.minimum_tasks <= completed_tasks_today.count
+    return false
+  end
+  
+  def completed_tasks_today
+    completed_tasks = []
+    self.completed_tasks.where(:date => Time.current.to_date).each do |completed_task|
+      completed_tasks << Task.find(completed_task.task_id)
+    end
+    return completed_tasks;
   end
   
   def required_tasks
