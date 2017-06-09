@@ -9,5 +9,8 @@
   %div.form-field
     = f.label :image
     = f.text_field :image
+  %dv.form-field
+    = f.check_box :restricted
+    = f.label :restricted
   %div.form-actions
     = f.submit "#{action} Reward"
