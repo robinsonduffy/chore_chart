@@ -2,7 +2,7 @@
 %form#reward-select{:method => :post}	
 	%ul#rewards
 		- @rewards.each do |reward|
-			%li{:class => ("disabled" if reward.points > @kid.points)}
+			%li{:class => [("disabled" if reward.points > @kid.points), ("restricted" if reward.restricted)]}
 				%label{:for => "reward-#{reward.id}"}
 					%img{:src => reward.image}
 					%br
