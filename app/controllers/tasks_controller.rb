@@ -10,9 +10,11 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @title = @task.name
+    @days = Day.all
   end
   
   def update
+  	params[:task][:day_ids] ||= []
     @task = Task.find(params[:id])
     if @task.update_attributes(params[:task])
       @task.reload
@@ -27,6 +29,7 @@ class TasksController < ApplicationController
   def new
     @title = "Create New Task"
     @task = Task.new
+    @days = Day.all
   end
   
   def create

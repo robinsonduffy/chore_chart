@@ -11,12 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170609014746) do
+ActiveRecord::Schema.define(:version => 20180909213609) do
 
   create_table "completed_tasks", :force => true do |t|
     t.integer  "kid_id"
     t.integer  "task_id"
     t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "days", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "days_tasks", :id => false, :force => true do |t|
+    t.integer  "day_id"
+    t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

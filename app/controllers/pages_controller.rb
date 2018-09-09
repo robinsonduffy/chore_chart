@@ -23,6 +23,8 @@ class PagesController < ApplicationController
     @tasks = @kid.tasks
     @date = start_of_week + (params[:day_id].to_i)
     @day_id = params[:day_id].to_i
+    @days = Day.all
+    @day = Day.find(@day_id)
   end
   
   def chore_chart_save

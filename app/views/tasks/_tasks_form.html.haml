@@ -12,5 +12,11 @@
   %dv.form-field
     = f.check_box :required
     = f.label :required
+  %div.form-field
+  = f.label :days
+  - @days.each do |day|
+    %br
+    = check_box_tag "task[day_ids][]",day.id,@task.valid_on_day(day)
+    = day.name
   %div.form-actions
     = f.submit "#{action} Task"
